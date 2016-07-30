@@ -11,13 +11,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>Cheese QR</h1>
-				<p class="lead">Minimal QR Code Scanner using saycheese.js and jsqrcode</p>
-				<p>You might need to run this demo on a webserver, e.g. <code>http://localhost/html5qrcodereader/index_saycheese.html</code></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
 				<div id="example" class="thumbnail embed-responsive embed-responsive-4by3"></div>
 				<div class="boxWrapper auto">
 					<div id="hiddenImg"></div>
@@ -26,7 +19,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-12">
 <pre>
 sayCheese.on('success', function() {
 	scanCode(sayCheese);
@@ -35,10 +28,6 @@ sayCheese.on('success', function() {
 sayCheese.start();
 </pre>
 				<form>
-				  <div class="form-group">
-				    <label for="videoSource">Select Camera</label>
-				    <select id="videoSource"><option selected>Default Camera</option></select>
-				  </div>
 				  <div class="form-group">
 				  	<a class="btn btn-primary" onclick="go()">Go</a>
 				  </div>
