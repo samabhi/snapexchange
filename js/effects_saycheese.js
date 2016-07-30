@@ -83,7 +83,7 @@ function showInfo(data) {
 	if (data !== 'error decoding QR Code') {
 		var htmldata = linkify(data);
 		$("#qrContent p").html(htmldata);
-		window.location.replace("http://stackoverflow.com");
+		$("#postScan").style("display=none");
 	} else {
 		$("#qrContent p").html('No QR Code in sight.');
 	}
