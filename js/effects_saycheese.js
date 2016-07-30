@@ -82,9 +82,11 @@ function qrCodeDecoder(dataUrl) {
 function showInfo(data) {
 	if (data !== 'error decoding QR Code') {
 		var htmldata = linkify(data);
-		$("#qrContent p").html(htmldata);
-		console.log(htmldata);
-		// $("#postScan").css("display", "none");
+		var contact_data = htmldata.split('!')
+		$("#qrContent p").html(contact_data);
+		$("#postScan").css("display","none");
+		$("#afterScan").css("display","block");
+		// window.location.replace("http://stackoverflow.com");
 	} else {
 		$("#qrContent p").html('No QR Code in sight.');
 	}
