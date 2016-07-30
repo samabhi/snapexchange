@@ -6,6 +6,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <style>
+          table, th, td {
+            border: 1px solid grey;
+            border-collapse:collapse;
+            padding:5px;
+            text-align: center;
+            font-size: 15px;
+          }
+
+          table tr:nth-child(odd) {
+            background-color: #dfdfdf;
+          }
+
+          table tr:nth-child(even) {
+            background-color: #ffffff;
+          }
+
+          th {
+            background: #abcdef;
+          }
+        </style>
     </head>
     <body>
 	<div class="container" id="postScan" style="text-align:center">
@@ -45,7 +67,7 @@ sayCheese.start();
 	</div>
 
   <div class="container" id="afterScan" style="text-align:center; display:none">
-    <table class="myTable">
+    <table class="myTable" >
       <tr>
         <th width="20%">prop</th>
         <th width="80%">contact_data</th>
