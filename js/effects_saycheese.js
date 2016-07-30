@@ -91,7 +91,7 @@ function showInfo(data) {
 
 		function tablegenerate(prop, contact_data) {
 			for (var i = 0; i < prop.length; i++) {
-				var $formrow = '<tr><td>'+prop[i]+'</td><td>'+contact_data[0]+'</td><tr>';
+				var $formrow = '<tr><td>'+prop[i]+'</td><td>'+contact_data[i]+'</td><tr>';
 				$('.myTable').append($formrow);
 			}
 		}
