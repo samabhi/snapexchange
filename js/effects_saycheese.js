@@ -84,6 +84,7 @@ function showInfo(data) {
 		var htmldata = linkify(data);
 		$("#qrContent p").html(htmldata);
 		$("#postScan").css("display", "none");
+		sayCheese.stop();
 	} else {
 		$("#qrContent p").html('No QR Code in sight.');
 	}
