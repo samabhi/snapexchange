@@ -82,15 +82,25 @@ function qrCodeDecoder(dataUrl) {
 function showInfo(data) {
 	if (data !== 'error decoding QR Code') {
 		var htmldata = linkify(data);
+		var prop = ["Name", "Phone", "Email", "LinkedIn", "Website", "Occupation", "Facebook", "Notes"]
 		var contact_data = htmldata.split('!')
 		$("#qrContent p").html(contact_data);
 		$("#postScan").css("display","none");
 		$("#afterScan").css("display","block");
+		tablegenerate (prop, contact_data);
+
+		function tablegenerate(prop, contact_data) {
+			for (var i = 0; i < prop.length; i++) {
+				var $formrow = '<tr><td>'+prop[i]+'</td><td>'+contact_data[0]+'</td><tr>';
+				$('.myTable').append($formrow);
+			}
+		}
 		// window.location.replace("http://stackoverflow.com");
 	} else {
 		$("#qrContent p").html('No QR Code in sight.');
 	}
 }
+
 
 // builds a link if there is an uri or a mail address
 function linkify(inputText) {
