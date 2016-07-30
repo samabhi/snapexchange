@@ -82,16 +82,16 @@ function qrCodeDecoder(dataUrl) {
 function showInfo(data) {
 	if (data !== 'error decoding QR Code') {
 		var htmldata = linkify(data);
-		var prop = ["Name", "Phone", "Email", "LinkedIn", "Website", "Occupation", "Facebook", "Notes"]
+		var details = ["First Name", "Last Name", "Phone", "Email", "LinkedIn", "Website", "Occupation", "Facebook", "Notes"]
 		var contact_data = htmldata.split('!')
 		$("#qrContent p").html(contact_data);
 		$("#postScan").css("display","none");
 		$("#afterScan").css("display","block");
-		tablegenerate (prop, contact_data);
+		tablegenerate (details, contact_data);
 
-		function tablegenerate(prop, contact_data) {
-			for (var i = 0; i < prop.length; i++) {
-				var $formrow = '<tr><td>'+prop[i]+'</td><td>'+contact_data[i]+'</td><tr>';
+		function tablegenerate(details, contact_data) {
+			for (var i = 0; i < details.length; i++) {
+				var $formrow = '<tr><td>'+details[i]+'</td><td>'+contact_data[i]+'</td><tr>';
 				$('.myTable').append($formrow);
 			}
 		}
