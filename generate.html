@@ -157,7 +157,7 @@
 
 <body>
 
-    <a href="index.html"><img class="logo fadeIn tossing" src="img/logo.png"></a>
+    <a href="index.html"><img class="logo fadeIn tossing" src="img/logo.gif"></a>
     <br>
     <br>
     <form method="post" id="localstorage">
@@ -172,39 +172,39 @@
                 </div>
                 <br>
                 <div id="input" class="padded">
-                    <input type="text" id="firstName" class="localstorage slideUp" value="" size="41" placeholder="First Name">
+                    <input type="text" id="firstName" name="firstName" class="localstorage slideUp" value="" size="41" placeholder="First Name">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                     <br>
                     <br>
-                    <input type="text" id="lastName" class="slideUp" value="" size="41" placeholder="Last Name">
+                    <input type="text" id="lastName" name="lastName" class="slideUp" value="" size="41" placeholder="Last Name">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                     <br>
                     <br>
-                    <input type="text" id="phone" class="slideUp" value="" size="41" placeholder="Phone Number">
+                    <input type="text" id="phone" name="phone" class="slideUp" value="" size="41" placeholder="Phone Number">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                     <br>
                     <br>
-                    <input type="text" id="mail" class="slideUp" value="" size="41" placeholder="Email">
+                    <input type="text" id="mail" name="mail" class="slideUp" value="" size="41" placeholder="Email">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                     <br>
                     <br>
-                    <input type="text" id="linkedin" class="slideUp" value="" size="41" placeholder="Linkedin">
+                    <input type="text" id="linkedin" name="linkedin" class="slideUp" value="" size="41" placeholder="Linkedin">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                     <br>
                     <br>
-                    <input type="text" id="website" class="slideUp" value="" size="41" placeholder="Website">
+                    <input type="text" id="website" name="website"class="slideUp" value="" size="41" placeholder="Website">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                     <br>
                     <br>
-                    <input type="text" id="occupation" class="slideUp" value="" size="41" placeholder="Occupation">
+                    <input type="text" id="occupation" name="occupation" class="slideUp" value="" size="41" placeholder="Occupation">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                     <br>
                     <br>
-                    <input type="text" id="facebook" class="slideUp" value="" size="41" placeholder="Facebook">
+                    <input type="text" id="facebook" name="facebook" class="slideUp" value="" size="41" placeholder="Facebook">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                     <br>
                     <br>
-                    <input type="text" id="notes" class="slideUp" value="" size="41" placeholder="Additional Notes">
+                    <input type="text" id="notes" name="notes" class="slideUp" value="" size="41" placeholder="Additional Notes">
                     <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
                 </div>
                 <br>
@@ -218,7 +218,7 @@
             </div>
         </center>
     </form>
-    <script>
+    <!-- <script>
     (function() {
 
         var demo = document.querySelector('.localstorage');
@@ -229,7 +229,9 @@
 
         if (!supportsLocalStorage()) {
             demo.value = 'No HTML5 localStorage support, soz.';
-        } else {
+        }
+
+        else {
             try {
                 setInterval(function() {
                     localStorage.setItem('autosave', demo.value);
@@ -253,6 +255,39 @@
         }
 
     })();
+    </script> -->
+
+    <script>
+    (function() {
+
+        function supportsLocalStorage() {
+            return typeof(Storage)!== 'undefined';
+        }
+
+        if (!supportsLocalStorage()) {
+            demo.value = 'No HTML5 localStorage support, soz.';
+        }
+
+        else {
+            try {
+                $('#generateButton').on('click', function(){
+                  $('input[type="text"]').each(function(){
+                    var id = $(this).attr('id');
+                    var value = $(this).val();
+                    localStorage.setItem(id, value);
+                  });
+                });
+
+                $('#load').on('click', function(){
+                  $('input[type="text"]').each(function(){
+                    var id = $(this).attr('id');
+                    var value = localStorage.getItem(id);
+                    $(this).val(value);
+                  });
+                });
+        }
+
+    });
     </script>
 </body>
 
