@@ -34,7 +34,7 @@ var scanner;
 
 function go() {
 	console.log('go!');
-	
+
 	if(scanner) {
 		scanner.stop();
 	}
@@ -43,23 +43,23 @@ function go() {
 		snapshots : true,
 		videoSource : videoSelect.value
 	});
-	
+
 	scanner.on('error',
 			function(error) {
 				$('#example').html(
 						'<p>This plugin cannot run. Check if your browser blocks it.</p>');
 			});
-	
+
 	scanner.on('snapshot', function(snapshot) {
 		qrCodeDecoder(snapshot.toDataURL());
 	});
-	
+
 	qrcode.callback = showInfo;
-	
+
 	scanner.on('success', function() {
 		scanCode(scanner);
 	});
-	
+
 	console.log('starting scanner...');
 	scanner.start();
 }
@@ -83,6 +83,7 @@ function showInfo(data) {
 	if (data !== 'error decoding QR Code') {
 		var htmldata = linkify(data);
 		$("#qrContent p").html(htmldata);
+		window.location.replace("http://stackoverflow.com");
 	} else {
 		$("#qrContent p").html('No QR Code in sight.');
 	}
