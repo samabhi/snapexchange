@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 HTML5 QR-code reader - no flash, only html and javascript
 
 A very basic QR-code reader based on:
@@ -29,6 +30,9 @@ Enjoy!
 
 To-do:
 - setting correct width and height of webcam stream for photobooth.js
+=======
+# snapexchange
+>>>>>>> master
 =======
 # snapexchange
 >>>>>>> master
