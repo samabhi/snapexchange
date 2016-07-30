@@ -1,0 +1,259 @@
+<html>
+<script language="javascript">
+    var x = document.getElementById("longi-signin");
+    var y = document.getElementById("lati-signin");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            y.value = "Your browser does not support location services.";
+        }
+    }
+
+    function showPosition(position) {
+        var longi = position.coords.longitude;
+        var lati = position.coords.latitude;
+        x.value = (position.coords.longitude).toFixed(2);
+        y.value = (position.coords.latitude).toFixed(2);
+        alert(position.coords.longitude);
+    }
+    // Generates a QR code with the user's information
+    function generateQRCode() {
+        var codeName = "TestingVariable"
+        var startNode = ""
+        startNode += firstName.value.trim() + "!" + lastName.value.trim() + "!";
+        startNode += phone.value.trim() + "!";
+        startNode += mail.value.trim() + "!";
+        startNode += linkedin.value.trim() + "!";
+        startNode += website.value.trim() + "!";
+        startNode += occupation.value.trim() + "!";
+        startNode += facebook.value.trim() + "!";
+        startNode += notes.value.trim() + "!";
+        this.qrImage.style.display = 'none';
+        this.qrImage.src = "https://chart.googleapis.com/chart?cht=qr&choe=UTF-8&chs=200x200&chl=" +
+            encodeURIComponent(startNode);
+        this.qrImage.style.display = 'inline';
+        this.vcard.value = startNode;
+        this.vcard.style.display = 'inline';
+        this.vcardDiv.style.display = 'inline';
+        this.sampleQR.style.display = 'none';
+
+        // Hides input field when QR is generated
+        var ele = document.getElementById("input");
+        if (ele.style.display == "none") {
+            ele.style.display = "block";
+        } else {
+            ele.style.display = "none";
+        }
+    }
+
+    function toggle() {
+        var ele = document.getElementById("input");
+        var mapper = document.getElementById("googleMap");
+        if (ele.style.display == "none") {
+            ele.style.display = "block";
+            mapper.style.display = "block";
+        } else {
+            ele.style.display = "none";
+            mapper.style.display = "none";
+        }
+    }
+
+    function toggleText() {
+        var eleTex = document.getElementById("generateButton");
+        var qr = document.getElementById("vcardDiv");
+
+        if (eleTex.value == "Generate") {
+            eleTex.value = "Edit QR Code";
+            qr.style.display = "block";
+
+        } else {
+            eleTex.value = "Generate";
+            qr.style.display = "none";
+        }
+    }
+</script>
+
+<head>
+    <title>SnapExchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <!-- Map stuff -->
+    <script src=' https://maps.googleapis.com/maps/api/js?key=AIzaSyDq46y_e7trXoQxVdlvtE_SHP59XING5uU&callback=initMap'></script>
+    <script>
+        var randomFactor = Math.random() * (0.0002);
+        var lat = 34.049523 + randomFactor;
+        var long = -118.257007 + randomFactor;
+        var myCenter = new google.maps.LatLng(lat, long);
+        var marker;
+        getLocation()
+        function initialize() {
+            var mapProp = {
+                center: myCenter,
+                zoom: 17,
+                disableDefaultUI: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var myCity = new google.maps.Circle({
+                center: myCenter,
+                radius: 25,
+                strokeColor: "#0000FF",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#0000FF",
+                fillOpacity: 0.4
+            });
+            myCity.setMap(map)
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                animation: google.maps.Animation.BOUNCE
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: "Current Location: " + Math.round(lat * 100) / 100 + ", " + Math.round(long * 100) / 100
+            });
+            infowindow.open(map, marker);
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <!-- Positions input fields -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            function init() {
+                if (localStorage["firstName"]) {
+                    $('#firstName').val(localStorage["firstName"]);
+                }
+                if (localStorage["email"]) {
+                    $('#email').val(localStorage["email"]);
+                }
+                if (localStorage["message"]) {
+                    $('#message').val(localStorage["message"]);
+                }
+            }
+            init();
+        });
+
+        $('.stored').keyup(function() {
+            localStorage[$(this).attr('name')] = $(this).val();
+        });
+
+        $('#localStorageTest').submit(function() {
+            localStorage.clear();
+        });
+    </script>
+</head>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/custom.min.css">
+<link rel="stylesheet" type="text/css" href="css/theme.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/animation.css">
+<link rel="stylesheet" type="text/css" href="css/wrapper.css">
+
+<body>
+
+    <a href="index.html"><img class="logo fadeIn tossing" src="img/logo.png"></a>
+    <br>
+    <br>
+    <form method="post" id="localstorage">
+        <center>
+            <div class="form-group">
+                <div>
+                    <div style="display:none;" class="fadeIn" id="vcardDiv">
+                        <!-- <textarea rows="0" cols="0" style='display:none;' id="vcard" border="0"></textarea> -->
+                        <div id="vcard"></div>
+                        <img id='qrImage' style='display:inline;' />
+                    </div>
+                </div>
+                <br>
+                <div id="input" class="padded">
+                    <input type="text" id="firstName" class="localstorage slideUp" value="" size="41" placeholder="First Name">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                    <br>
+                    <br>
+                    <input type="text" id="lastName" class="slideUp" value="" size="41" placeholder="Last Name">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                    <br>
+                    <br>
+                    <input type="text" id="phone" class="slideUp" value="" size="41" placeholder="Phone Number">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                    <br>
+                    <br>
+                    <input type="text" id="mail" class="slideUp" value="" size="41" placeholder="Email">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                    <br>
+                    <br>
+                    <input type="text" id="linkedin" class="slideUp" value="" size="41" placeholder="Linkedin">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                    <br>
+                    <br>
+                    <input type="text" id="website" class="slideUp" value="" size="41" placeholder="Website">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                    <br>
+                    <br>
+                    <input type="text" id="occupation" class="slideUp" value="" size="41" placeholder="Occupation">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                    <br>
+                    <br>
+                    <input type="text" id="facebook" class="slideUp" value="" size="41" placeholder="Facebook">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                    <br>
+                    <br>
+                    <input type="text" id="notes" class="slideUp" value="" size="41" placeholder="Additional Notes">
+                    <input class="form-check-input slideUp" type="checkbox" id="firstNamev" value="firstNamev" checked>
+                </div>
+                <br>
+                <div id="googleMap" class="slideUp" style="width:300px;height:300px;"></div>
+                <br>
+                <br>
+                <input type="button" value="Contacts" class="btn btn-default fadeIn" onclick="javascript:generateQRCode();">&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" class="btn btn-primary fadeIn" value="Scanner">&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="generateButton" value="Generate" class="btn btn-default fadeIn" onclick="getLocation();toggle();toggleText();generateQRCode();storeCookie();">
+                <br>
+            </div>
+        </center>
+    </form>
+    <script>
+    (function() {
+
+        var demo = document.querySelector('.localstorage');
+
+        function supportsLocalStorage() {
+            return typeof(Storage)!== 'undefined';
+        }
+
+        if (!supportsLocalStorage()) {
+            demo.value = 'No HTML5 localStorage support, soz.';
+        } else {
+            try {
+                setInterval(function() {
+                    localStorage.setItem('autosave', demo.value);
+                }, 1000);
+            } catch (e) {
+                if (e == QUOTA_EXCEEDED_ERR) {
+                    alert('Quota exceeded!');
+                }
+            }
+            if (localStorage.getItem('autosave')) {
+                demo.value = localStorage.getItem('autosave');
+            }
+            document.querySelector('.clear').onclick = function() {
+                demo.value = '';
+                localStorage.removeItem('autosave');
+            };
+            document.querySelector('.empty').onclick = function() {
+                demo.value = '';
+                localStorage.clear();
+            };
+        }
+
+    })();
+    </script>
+</body>
+
+</html>

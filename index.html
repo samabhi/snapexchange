@@ -1,60 +1,65 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Basic QR-code reader example</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<script>
+    function generateQRCode() {
+        var codeName = "TestingVariable"
+        var startNode = "Start \n"
+        var endNode = "End";
+        startNode += "Name: " + firstName.value.trim() + " " + lastName.value.trim() + "\n";
+        startNode += "Phone Number:" + phone.value.trim() + "\n";
+        startNode += "Email: " + mail.value.trim() + "\n";
+        startNode += "LinkedIn: " + linkedin.value.trim() + "\n";
+        startNode += "Website: " + website.value.trim() + "\n";
+        startNode += "Occupation: " + occupation.value.trim() + "\n";
+        startNode += "Facebook: " + facebook.value.trim() + "\n";
+        startNode += "Notes: " + notes.value.trim() + "\n";
+        startNode += endNode;
 
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/styles.css">
-        <script src="js/jquery.min.js"></script>
-		<script src="js/photobooth.js"></script>
+        // Generates QR code based on input data
+        this.qrImage.style.display = 'none';
+        this.qrImage.src = "https://chart.googleapis.com/chart?cht=qr&choe=UTF-8&chs=200x200&chl=" +
+            encodeURIComponent(startNode);
+        this.qrImage.style.display = 'inline';
+        this.vcard.value = startNode;
+        this.vcard.style.display = 'inline';
+        this.vcardDiv.style.display = 'inline';
+        this.sampleQR.style.display = 'none';
+    }
+</script>
 
-		<script type="text/javascript" src="js/qr/grid.js"></script>
-		<script type="text/javascript" src="js/qr/version.js"></script>
-		<script type="text/javascript" src="js/qr/detector.js"></script>
-		<script type="text/javascript" src="js/qr/formatinf.js"></script>
-		<script type="text/javascript" src="js/qr/errorlevel.js"></script>
-		<script type="text/javascript" src="js/qr/bitmat.js"></script>
-		<script type="text/javascript" src="js/qr/datablock.js"></script>
-		<script type="text/javascript" src="js/qr/bmparser.js"></script>
-		<script type="text/javascript" src="js/qr/datamask.js"></script>
-		<script type="text/javascript" src="js/qr/rsdecoder.js"></script>
-		<script type="text/javascript" src="js/qr/gf256poly.js"></script>
-		<script type="text/javascript" src="js/qr/gf256.js"></script>
-		<script type="text/javascript" src="js/qr/decoder.js"></script>
-		<script type="text/javascript" src="js/qr/qrcode.js"></script>
-		<script type="text/javascript" src="js/qr/findpat.js"></script>
-		<script type="text/javascript" src="js/qr/alignpat.js"></script>
-		<script type="text/javascript" src="js/qr/databr.js"></script>
+<head>
+    <title>QR Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/custom.min.css">
+<link rel="stylesheet" type="text/css" href="css/theme.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/animation.css">
 
-		<script src="js/effects.js"></script>
-    </head>
-    <body>
+<body>
 
-		<div class="pageWrapper">
+    <center><div>
+        <img class="logo fadeIn tossing" src="img/logo.png">
+        <!-- <div class="panel panel-primary slideUp" style="width:60%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">SnapExchange</h3>
+            </div>
+            <div class="panel-body">
+                SnapExchange makes exchanging contact information easy. Simply generate a QR code to send and scan one to receive.
+            </div>
+        </div> -->
 
-			<div class="boxWrapper">
-				<div id="example"></div>
-			</div>
+        <div style="width:80%; max-width:500px; border:2px solid white; color:white; padding:25px; margin:25px">
+            <h2><b>Connect Faster</b></h2>
+            <h4>SnapExchange makes exchanging contact information easy. Simply generate a QR code to send and scan one to receive.</h4>
+        </div>
+        <input type="button" value="Contacts" class="btn btn-default fadeIn">
+        <input type="button" class="btn btn-primary fadeIn" value="Scan">
+        <a href="generate.html" class="btn btn-default fadeIn">Generate QR</a>
+    </div></center>
 
-			<div class="button">
-				<a id="button">Scan QR code</a>
-			</div>
+</body>
 
-			<div class="boxWrapper auto">
-				<div id="hiddenImg"></div>
-				<div id="qrContent"><p>Result will be here.</p></div>
-			</div>
-
-		</div>
-
-
-
-    </body>
 </html>
