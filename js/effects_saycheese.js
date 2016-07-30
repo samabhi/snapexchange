@@ -83,8 +83,7 @@ function showInfo(data) {
 	if (data !== 'error decoding QR Code') {
 		var htmldata = linkify(data);
 		$("#qrContent p").html(htmldata);
-		$("#postScan").css("display", "none");
-		sayCheese.stop();
+		// $("#postScan").css("display", "none");
 	} else {
 		$("#qrContent p").html('No QR Code in sight.');
 	}
