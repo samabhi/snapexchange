@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 HTML5 QR-code reader - no flash, only html and javascript
 
 A very basic QR-code reader based on:
@@ -17,22 +15,10 @@ I will correct it in future.
 Second example (index_saycheese.html) uses saycheese.js to read 
 from webcam and the video is correct.
 
-
 Tested with mobile browsers (Firefox and Chrome in newest version).
 Other browsers are not tested!
-
 
 Usage:
 Only clone or download this script and test it on your local 
 webserver.
 Enjoy!
-
-
-To-do:
-- setting correct width and height of webcam stream for photobooth.js
-=======
-# snapexchange
->>>>>>> master
-=======
-# snapexchange
->>>>>>> master
