@@ -59,6 +59,10 @@
     </table>
 </div>
 
+<input type="button" value="Contacts" class="btn btn-default fadeIn" onclick="javascript:generateQRCode();">&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary btn-circle btn-xl fadeIn" href="scan.html">Scan</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="generateButton" value="Generate" class="btn btn-default fadeIn" onclick="getLocation();toggle();toggleText();generateQRCode();storeCookie();">
+
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
